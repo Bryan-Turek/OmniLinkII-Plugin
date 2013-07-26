@@ -70,18 +70,17 @@ public class OmniLinkIIImpl implements OmniLinkII {
 	}
 	
 	@Override
-	public ReplyMessage executeCommand(String c) throws Exception {
+	public void executeCommand(String c) throws Exception {
 		
         RequestMessage msg = commandManager.createRequestMessage(c);
         if (msg != null && comm.isOpen())
         {
         	ReplyMessage reply = comm.execute(msg);
-            return reply;
+            System.out.println(reply);
         } else if(!comm.isOpen()) {
         	open();
         	executeCommand(c);
         }
-		return null;
 		
 	}
 
